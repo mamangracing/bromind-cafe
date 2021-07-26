@@ -7,6 +7,7 @@ class Auth extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation','email');
         $this->load->model('web_model');
+        $this->load->library('mailer');
     }
 
     public function index()
@@ -185,33 +186,35 @@ class Auth extends CI_Controller
 
         } else {
 
-            $email = $this->input->post('email');
-            $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+            $email_penerima = $this->input->post('email');
+            $user = $this->db->get_where('user', ['email' => $email_penerima, 'is_active' => 1])->row_array();
+            $subject = 'diriku lupa password';
+            $pesan = 'password kamu adalah = '. $user['password'];
+            //$content = array('pesan' => $pesan);
+            
+            $sendmail = array(
+                'email_penerima' => $email_penerima,
+                'subject' => $subject,
+                'content' => $pesan
+            );
 
-            if ($user) {
-                var_dump($user['password']);
-                // $token = base64_encode(random_bytes(32));
-                // $user_token = [
-                //     'email' => $email,
-                //     'token' => $token,
-                //     'date_created' => time()
-                // ];
+            if(empty($attachment['name'])){
 
-                // $this->db->insert('user_token', $user_token);
-                // $this->_sendEmail($token, 'forgot');
-
-                // $this->session->set_flashdata('message', 
-                // '<div class="alert alert-success alert-message" role="alert">
-                //     Please check your email to reset password!
-                // </div>');
-                // redirect('auth/forgotpassword');
+                $send = $this->mailer->send($sendmail);
             } else {
-                $this->session->set_flashdata('message', 
-                '<div class="alert alert-danger alert-message" role="alert">
-                    Email tidak terdaftar !!
-                </div>');
-                redirect('auth/forgotpassword');
+                $send = $this->mailer->send($sendmail);
             }
+
+            echo '<b>'.$send['status'].'</b><br>';
+            echo $send['message'];
+            echo "<br><a href='". base_url('auth/forgotpassword') . "'>kembali ke form</a>";
+
+            // $this->session->set_flashdata('message', 
+            // '<div class="alert alert-danger alert-message" role="alert">
+            //     Email tidak terdaftar !!
+            // </div>');
+            // redirect('auth/forgotpassword');
+           
         }
     }
 

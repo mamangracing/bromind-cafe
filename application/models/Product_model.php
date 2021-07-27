@@ -8,9 +8,14 @@ class Product_model extends CI_Model
         return $this->db->update($table, $data, array($where => $id));
     }
 
-    public function get_product()
+    public function get()
     {
         return $this->db->get('product')->result_array();
+    }
+
+    public function get_product()
+    {
+        return $this->db->query("SELECT * FROM product ORDER BY product_id desc limit 3")->result();
     }
 
     public function get_products($limit, $start, $product_type = null, $keyword = null)

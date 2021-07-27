@@ -20,9 +20,6 @@ class LandingPage extends CI_Controller
 		$data['promo'] = $this->bro->get_where('promo','status',1);
         $data['product'] = $this->product->get_product();
 		
-		// var_dump($data['story']);
-		// die;
-        
         $this->load->view('landing-page/asset/header', $data);
         $this->load->view('landing-page/asset/navbar', $data);
         $this->load->view('landing-page/index', $data);
@@ -36,10 +33,7 @@ class LandingPage extends CI_Controller
         $data['page'] = $this->bro->get('page');
         $data['story'] = $this->bro->get('story');
         $data['website'] = $this->full->get_info();
-        $data['product'] = $this->product->get_product();
-		
-		// var_dump($data['story']);
-		// die;
+        $data['product'] = $this->product->get();
         
         $this->load->view('landing-page/asset/header', $data);
         $this->load->view('landing-page/asset/navbar', $data);

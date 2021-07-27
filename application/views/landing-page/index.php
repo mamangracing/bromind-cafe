@@ -96,15 +96,15 @@
 		</div>
 		<div class="row mt-5">
 			<?php
-			foreach ($featured as $ftr) :?>
+			foreach ($product as $p) :?>
 				<div class="form-group col-xl-4 col-md-12">
 					<div class="col-xl-12 col-md-7 col-12 produk margin-auto mt-3">
-						<div class="harga"><h5 class="text-center mt-1 text-white"><?= 'Rp ' . number_format($ftr['price'],0,"",".") ?></h5></div>
+						<div class="harga"><h5 class="text-center mt-1 text-white"><?= 'Rp ' . number_format($p['price'],0,"",".") ?></h5></div>
 						<div class="image-prduk margin-auto">
-							<img src="<?= base_url('assets/img/product/') . $ftr['product_img'] ?>" class="w-100 margin-let">
+							<img src="<?= base_url('assets/img/product/') . $p['product_img'] ?>" class="w-100 margin-let">
 						</div>
 						<div class="card-body mt-4 text-center margin-auto" id="name_produk">
-							<h3 class="noto-sans6 col-xl-12"><?= $ftr['product_name'] ?></h3>
+							<h3 class="noto-sans6 col-xl-12"><?= $p['product_name'] ?></h3>
 						</div>
 					</div>
 				</div>

@@ -188,14 +188,15 @@ class Auth extends CI_Controller
 
             $email_penerima = $this->input->post('email');
             $user = $this->db->get_where('user', ['email' => $email_penerima, 'is_active' => 1])->row_array();
-            $subject = 'diriku lupa password';
-            $pesan = 'password kamu adalah = '. $user['password'];
-            //$content = $this->load->view('mail',$data);   
+            $subject = 'Kamu Lupa Password ?';
+            $content = $this->load->view('mail', array(
+                'pesan' => $user['password'],
+                'user' => $user['name']), true);   
 
             $sendmail = array(
                 'email_penerima' => $email_penerima,
                 'subject' => $subject,
-                'content' => $pesan
+                'content' => $content
             );
 
             if(empty($attachment['name'])){

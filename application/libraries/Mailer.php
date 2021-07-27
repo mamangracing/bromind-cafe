@@ -7,7 +7,7 @@ class Mailer{
 
 	protected $_ci;
 	protected $email_pengirim = 'cafebromind@gmail.com';
-	protected $nama_pengirim = 'System';
+	protected $nama_pengirim = 'Bromind Cafe';
 	protected $password = 'belajarasteroit123';
 
 	public function __construct()
@@ -47,12 +47,12 @@ class Mailer{
 		);
 
 		$mail->setFrom($this->email_pengirim, $this->nama_pengirim);
-		$mail->addAddress('putrabina0@gmail.com');
+		$mail->addAddress($data['email_penerima']);
 		$mail->isHTML(true);
 
 		$mail->Subject = $data['subject'];
 		$mail->Body = $data['content'];
-		//$mail->AddEmbeddedImage('assets/img/logo_BM.png');
+		$mail->AddEmbeddedImage('assets/img/logo_BM.png','logo_bromind','logo_BM.png');
 
 		$send = $mail->send();
 
@@ -67,7 +67,7 @@ class Mailer{
 				'message' => 'email gagal dikirim'
 			);
 		}
-
+		
 		return $response;
 	}
 

@@ -190,8 +190,8 @@ class Auth extends CI_Controller
             $user = $this->db->get_where('user', ['email' => $email_penerima, 'is_active' => 1])->row_array();
             $subject = 'diriku lupa password';
             $pesan = 'password kamu adalah = '. $user['password'];
-            //$content = array('pesan' => $pesan);
-            
+            //$content = $this->load->view('mail',$data);   
+
             $sendmail = array(
                 'email_penerima' => $email_penerima,
                 'subject' => $subject,
@@ -214,6 +214,7 @@ class Auth extends CI_Controller
             //     Email tidak terdaftar !!
             // </div>');
             // redirect('auth/forgotpassword');
+            //$this->load->view('mail',$content);
            
         }
     }

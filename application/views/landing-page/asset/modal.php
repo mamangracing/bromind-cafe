@@ -29,7 +29,7 @@
                         var produk_cart = document.getElementsByClassName('produk_cart');
                                 
                         for(let i = 0; i<data_cart.length; i++){
-                            document.write('<div class="form-group col-xl-12 mt-5 produk_cart"><div class="row"><div class="col-12 col-xl-6"><div class="col-xl-12 col-8 margin-auto cart-image"><img src='+data_cart[i].image+' class="w=100"></div></div><div class="col-xl-5 col-11" id="produk_name"><div class="produk_title mt-3">'+data_cart[i].name+'</div><div class="idr" id="price'+i+'">Rp <span class="amount">'+data_cart[i].price+'</span></div><div class="count mt-4">Qty<span class="input-group-btn"><button onclick="button_down('+i+');" type="button" class="btn btn-sm btn-danger rounded-0 btn-number less_qty" position="1" id="'+i+'"><i class="fas fa-minus"></i></button></span><input min="0" type="number" id="qty" value='+data_cart[i].no+' class="qty col-xl-5 margin-left"><span class="input-group-btn"><button type="button" id="'+i+'" class="btn btn-sm btn-danger rounded-0 btn-number add_qty" position="1" onclick="button_up('+i+');"><i class="fas fa-plus"></i></button></span></div></div><div class="col-xl-1 col-1 h-25 remove"><a href="#" class="text-dark" onclick="hapus('+data_cart[i].id+');"><i class="far fa-trash-alt"></i></a></div></div></div>');
+                            document.write('<div class="form-group col-xl-12 mt-5 produk_cart"><div class="row"><div class="col-12 col-xl-6"><div class="col-xl-12 col-8 margin-auto cart-image"><img src='+data_cart[i].image+' class="w=100"></div></div><div class="col-xl-5 col-11" id="produk_name"><div class="produk_title mt-3">'+data_cart[i].product_name+'</div><div class="idr" id="price'+i+'">Rp <span class="amount">'+data_cart[i].price+'</span></div><div class="count mt-4">Qty<span class="input-group-btn"><button onclick="button_down('+i+');" type="button" class="btn btn-sm btn-danger rounded-0 btn-number less_qty" position="1" id="'+i+'"><i class="fas fa-minus"></i></button></span><input min="0" type="number" id="qty" value='+data_cart[i].qty+' class="qty col-xl-5 margin-left"><span class="input-group-btn"><button type="button" id="'+i+'" class="btn btn-sm btn-danger rounded-0 btn-number add_qty" position="1" onclick="button_up('+i+');"><i class="fas fa-plus"></i></button></span></div></div><div class="col-xl-1 col-1 h-25 remove"><a href="#" class="text-dark" onclick="hapus('+data_cart[i].id+');"><i class="far fa-trash-alt"></i></a></div></div></div>');
                         }
 
                         function button_up(data){
@@ -128,8 +128,10 @@
 $i = 0;
 $cart_session = @$this->session->userdata('cart_session');
 
+
+
 foreach($product as $pd) : ?>
-<div class="modal fade prodetail" id="MenuDetail<?= $pd['product_id'];?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<div class="modal fade prodetail" id="MenuDetail<?= $pd->product_id;?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header" style="border-bottom: none;">
@@ -143,18 +145,18 @@ foreach($product as $pd) : ?>
                 <div class="container-fluid">
                     <div class="row desktop">
                         <div class="col-6" id="img">
-                            <img src="<?= base_url('assets/img/product/'). $pd['product_img']; ?>" class="border border-dark w-100">
+                            <img src="<?= base_url('assets/img/product/'). $pd->product_img; ?>" class="border border-dark w-100">
                         </div>
                         <div class="col-6" id="desc">
                             <div class="row">
                                 <div class="col-12" id="proname">
-                                    <?= $pd['product_name']; ?>
+                                    <?= $pd->product_name; ?>
                                 </div>
                                 <div class="col-12" id="proprice">
-                                    <?= $pd['price']; ?>
+                                    <?= $pd->price; ?>
                                 </div>
                                 <div class="col-12" id="prodesc">
-                                    <?= $pd['description'];?>
+                                    <?= $pd->description;?>
                                 </div>
                                 <div class="row px-3" id="m-bottom">
                                     <div class="col-12" id="qty">
@@ -167,9 +169,9 @@ foreach($product as $pd) : ?>
                                                             <i class="fas fa-minus"></i>
                                                         </button>
                                                     </span>
-                                                    <input type="number" class="form-control text-center input-number qty<?= $pd['product_id'];?> mx-2" value="1"
+                                                    <input type="number" class="form-control text-center input-number qty<?= $pd->product_id;?> mx-2" value="1"
                                                     onkeypress="return numbOnly(event)" id="qty[<?= $i;?>]">
-                                                    <input type="number" value="<?= $pd['product_id'];?>" hidden>
+                                                    <input type="text" value="<?= $pd->product_id;?>" hidden>
                                                     <span class="input-group-btn">
                                                         <button type="button" class="btn btn-sm btn-danger rounded-0 btn-number add_qty" position="<?= $i;?>">
                                                             <i class="fas fa-plus"></i>
@@ -180,7 +182,7 @@ foreach($product as $pd) : ?>
                                         </div>
                                     </div>
                                     <div class="col btn-d" id="btn">
-                                        <a href="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk <?php echo $pd['product_name'];?> harga <?php echo $pd['price'];?>" target="blank" class="btn btn-danger rounded-0 mr-4" target="blank">Order</a>
+                                        <a href="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk <?php echo $pd->product_name;?> harga <?php echo $pd->price;?>" target="blank" class="btn btn-danger rounded-0 mr-4" target="blank">Order</a>
                                         <button type="button" id="add" product_id="1" class="btn btn-outline-danger rounded-0 ShoppingCart">Add to Cart</button>
                                     </div>
                                 </div>
@@ -191,18 +193,18 @@ foreach($product as $pd) : ?>
                     <!-- mobile -->  
                     <div class="row mobile">
                         <div class="col-12 text-center" id="img">
-                            <img src="<?= base_url('assets/img/product/'). $pd['product_img']; ?>">
+                            <img src="<?= base_url('assets/img/product/'). $pd->product_img; ?>">
                         </div>
                         <div class="col-12" id="desc">
                             <div class="row">
                                 <div class="col-12" id="proname">
-                                    <?= $pd['product_name'];?>
+                                    <?= $pd->product_name;?>
                                 </div>
                                 <div class="col-12" id="proprice">
-                                    <?= $pd['price'];?>
+                                    <?= $pd->price;?>
                                 </div>
                                 <div class="col-12" id="prodesc">
-                                    <?= $pd['description'];?>
+                                    <?= $pd->description;?>
                                 </div>
                                 <div class="row px-3" id="m-bottom">
                                     <div class="col-12" id="qty">
@@ -215,9 +217,9 @@ foreach($product as $pd) : ?>
                                                             <i class="fas fa-minus"></i>
                                                         </button>
                                                     </span>
-                                                    <input type="number" class="form-control text-center qty<?= $pd['product_id'];?> mx-2" value="<?= @$cart_session[$pd['product_id']] ?>"
+                                                    <input type="number" class="form-control text-center qty<?= $pd->product_id;?> mx-2" value="<?= @$cart_session[$pd->product_id] ?>"
                                                     onkeypress="return numbOnly(event)" id="qty[<?= $i;?>]">
-                                                    <input type="number" value="<?= $pd['product_id'];?>" hidden>
+                                                    <input type="text" value="<?= $pd->product_id;?>">
                                                     <span class="input-group-btn">
                                                         <button type="button" class="btn btn-sm btn-danger rounded-0 btn-number add_qty" position="<?= $i;?>">
                                                             <i class="fas fa-plus"></i>
@@ -228,7 +230,7 @@ foreach($product as $pd) : ?>
                                         </div>
                                     </div>
                                     <div class="modal-footer" style="border-top: none;">
-                                        <a href="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk <?php echo $pd['product_name'];?> harga <?php echo $pd['price'];?>" id="order" target="blank" class="btn btn-danger rounded-0">Order</a>
+                                        <a href="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk <?php echo $pd->product_name;?> harga <?php echo $pd->price;?>" id="order" target="blank" class="btn btn-danger rounded-0">Order</a>
                                         <button type="button" id="add" class="btn btn-outline-danger rounded-0 ShoppingCart">Add to Cart</button>
                                     </div>
                                 </div>

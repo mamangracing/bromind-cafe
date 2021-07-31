@@ -10,7 +10,7 @@ class Product_model extends CI_Model
 
     public function get()
     {
-        return $this->db->get('product')->result_array();
+        return $this->db->get('product')->result();
     }
 
     public function get_product()
@@ -57,8 +57,8 @@ class Product_model extends CI_Model
 
     public function delete($id)
     {
-        $this->db->where('product_id', $id);
-        $this->db->delete('product');
+        $result = $this->db->get_where('product', array('product_id' => $id));
+        return $result;
     }
 
     public function get_food()

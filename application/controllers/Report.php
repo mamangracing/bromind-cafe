@@ -195,12 +195,27 @@ class Report extends CI_Controller
     public function delete()
     {
         $id = $this->uri->segment(3);
-        $this->report_model->delete($id);
+        $data = $this->report_model->get_report_id($id);
+
+        if($data->num_rows() > 0){
+
+            $this->report_model->delete($id);
         
-        $this->session->set_flashdata('message', 
-            '<div class="alert alert-success" role="alert">
-                Report has been deleted!
-            </div>');
-        redirect('report');
+            $this->session->set_flashdata('message', 
+                '<div class="alert alert-success text-center" role="alert">
+                    Report has been deleted!
+                </div>');
+
+            redirect('report');
+
+        } else {
+
+            $this->session->set_flashdata('message', 
+                '<div class="alert alert-danger text-center" role="alert">
+                    Report not found
+                </div>');
+
+            redirect('report');
+        }
     }
 }

@@ -159,7 +159,7 @@ class Website extends CI_Controller
         $this->web_model->update($where,$data,'website');
 
         $this->session->set_flashdata('message', 
-        '<div class="alert alert-success" role="alert">
+        '<div class="alert alert-success text-center" role="alert">
             Success to update website information!
         </div>');
         redirect('website');
@@ -288,8 +288,7 @@ class Website extends CI_Controller
         $this->pagination->initialize($config);
         
         $data['start'] = $this->uri->segment(4);
-        $data['message'] = $this->web_model->get_message(
-        $config['per_page'], $data['start']);
+        $data['message'] = $this->web_model->get_message();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -33,15 +33,15 @@
 		    	foreach($product as $pd) :?>
 					<div class="form-group col-12 col-xl-4 col-md-6 mt-5">
 						<div class="col-xl-12 col-md-12 col-12 produk list-product">
-							<a href="#" data-toggle="modal" data-target="#MenuDetail<?= $pd['product_id'];?>" class="text-dark">
+							<a href="#" data-toggle="modal" data-target="#MenuDetail<?= $pd->product_id;?>" class="text-dark">
 								<div class="image-prduk col-10 col-xl-12 m-auto">
-									<img src="<?= base_url('assets/img/product/' . $pd['product_img']); ?>" class="w-100">
+									<img src="<?= base_url('assets/img/product/' . $pd->product_img); ?>" class="w-100">
 									<div class="mt-4 col-12 text-center col-md-12 col-xl-10" id="name_produk">
-										<h3 class="noto-sans6 col-md-12 margin-auto"><?= $pd['product_name']; ?></h3>
+										<h3 class="noto-sans6 col-md-12 margin-auto"><?= $pd->product_name; ?></h3>
 									</div>
 								</div>
 								<div class="harga"><h5 class="text-center mt-1 text-white">
-									Rp<span><?= $pd['price']; ?></span></h5>
+									Rp<span><?= $pd->price; ?></span></h5>
 								</div>
 							</a>
 						</div>

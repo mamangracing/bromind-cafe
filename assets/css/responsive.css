@@ -1371,7 +1371,7 @@
     /*  MAIN
         CONTACT US */
     .card-body {
-        padding: 42px 0 0 80px;
+        padding: 42px 42px 68px 80px;
     }
     .card-body #h-contact {
         font-size: 32px;
@@ -1693,7 +1693,7 @@
 
     /*garis merah*/
     .box-line-story{
-        margin-top: 5% !important;
+        margin-top: 16% !important;
         left: 11% !important;
         width: 32% !important;
         height: 290px !important;

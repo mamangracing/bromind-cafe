@@ -205,8 +205,8 @@ class Leader extends CI_Controller
         $this->employee_model->del_user($id);
         
         $this->session->set_flashdata('message', 
-            '<div class="alert alert-success" role="alert">
-                Admin has been deleted!
+            '<div class="alert alert-success text-center" role="alert">
+                Leader has been deleted!
             </div>');
         redirect('leader/employees');
     }

@@ -250,12 +250,22 @@ class Product extends CI_Controller
     public function delete()
     {
         $id = $this->uri->segment(3);
-        $this->product_model->delete($id);
+        $data = $this->product_model->delete($id);
         
-        $this->session->set_flashdata('message', 
-            '<div class="alert alert-success" role="alert">
-                Product has been deleted!
-            </div>');
-        redirect('product');
+        if($data->num_rows() > 0){
+
+            $this->session->set_flashdata('message', 
+                '<div class="alert alert-success text-center" role="alert">
+                    Product has been deleted!
+                </div>');
+            redirect('product');
+        } else {
+
+            $this->session->set_flashdata('message', 
+                '<div class="alert alert-danger text-center" role="alert">
+                    Product not found!
+                </div>');
+            redirect('product');
+        }
     }
 }

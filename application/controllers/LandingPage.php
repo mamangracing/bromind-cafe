@@ -102,7 +102,7 @@ class LandingPage extends CI_Controller
         $data['page'] = $this->bro->get('page');
         $data['story'] = $this->bro->get('story');
         $data['website'] = $this->full->get_info();
-        $data['product'] = $this->product->get_product();
+        $data['product'] = $this->product->get();
 
         $this->form_validation->set_rules('name', 'Full Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -115,17 +115,27 @@ class LandingPage extends CI_Controller
             $this->load->view('landing-page/asset/modal');
             $this->load->view('landing-page/asset/footer');
         } else {
+
+            $message = $this->db->query('SELECT * FROM message')->result_array();
+            $no_urut = count($message);
+
+            $kode = "MSG".sprintf("%02s",$no_urut);
+
             $data = [
+                'message_id' => $kode,
                 'name' => $this->input->post('name'),
                 'email' => $this->input->post('email'),
                 'comment' => $this->input->post('message'),
-                'date_created' => time()
+                'date_created' => date('Y-m-d')
             ];
-    
-            // var_dump($data);
-            // die;
-    
+            
             $this->db->insert('message', $data);
+
+            $this->session->set_flashdata('message', 
+            '<div class="alert alert-success text-center" role="alert">
+                Message success send !
+            </div>');
+
             redirect('LandingPage/contact');
         }
     }

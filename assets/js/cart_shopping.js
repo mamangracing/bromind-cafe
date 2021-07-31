@@ -9,14 +9,15 @@ for(let i = 0; i<attToCartBtn.length; i++){
 		if(typeof(Storage) !== 'undefined'){
 
 			//berfungsi sebagai pengambilan data dari single order
+			//menyimpan data berbentuk object
 			
 			let item = {
+				no_cart:0,
+				product_id:attToCartBtn[i].parentElement.parentElement.children[0].children[0].children[1].children[0].children[2].value,
 				image:attToCartBtn[i].parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0].src,
 				price:parseInt(attToCartBtn[i].parentElement.parentElement.parentElement.children[1].innerText),
-				name:attToCartBtn[i].parentElement.parentElement.parentElement.children[0].innerText,
-				no:parseInt(attToCartBtn[i].parentElement.parentElement.children[0].children[0].children[1].children[0].children[1].value),
-				kd_product:parseInt(attToCartBtn[i].parentElement.parentElement.children[0].children[0].children[1].children[0].children[2].value),
-				
+				product_name:attToCartBtn[i].parentElement.parentElement.parentElement.children[0].innerText,
+				qty:parseInt(attToCartBtn[i].parentElement.parentElement.children[0].children[0].children[1].children[0].children[1].value)
 			}
 
 			// localStorage.setItem('product_list',JSON.stringify(item));
@@ -45,8 +46,8 @@ for(let i = 0; i<attToCartBtn.length; i++){
 				let localItems = JSON.parse(localStorage.getItem('items'));
 
 				localItems.map(data=>{
-					if(item.name == data.name){
-						item.no = data.no + 1;
+					if(item.product_name == data.product_name){
+						item.qty = data.qty + 1;
 						
 					}else{
 						items.push(data);
@@ -55,7 +56,7 @@ for(let i = 0; i<attToCartBtn.length; i++){
 
 				items.push(item);
 				localStorage.setItem('items',JSON.stringify(items));
-				//window.location.reload();
+				window.location.reload();
 			}
 
 		}else{
@@ -71,9 +72,11 @@ let no = 0;
 
 //berfungsi untuk menghitung jumlah data dalam keranjang belanja
 JSON.parse(localStorage.getItem('items')).map(data=>{
-	no = no + data.no;
+	no = no + data.qty;
+	
 });
 
 iconShoppingp.innerHTML = no;
 iconShoppingd.innerHTML = no;
 
+// <div id="MenuDetailPRK001" tabindex="-1" aria-labelledby="largeModal" style="display: block; padding-right: 17px;" aria-modal="true" role="dialog" class="modal fade prodetail show">

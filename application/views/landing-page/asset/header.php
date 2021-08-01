@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/') ?>/css/main.css?v=2.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <style>
         /*untuk menghilangkan navbar google bawaan */

@@ -142,6 +142,27 @@ class LandingPage extends CI_Controller
 
     public function tes()
     {
-        var_dump($this->input->get());
+
+        $post = $this->input->post();
+        echo "<pre>";
+        $mbledos = explode(',',$post['product_id']);
+        $product = array_filter($mbledos);
+
+        $tes = explode(',', $post['qty']);
+        $qty = array_filter($tes);
+
+        foreach ($product as $key => $p ) {
+
+            $this->db->update('product', ['ordered' => $qty[$key]] ,array('product_id' => $p));
+
+            $s = $this->db->get_where('product',['product_id' => $p])->row();
+            $t[] = $s->product_name . ':' . $qty[$key];
+            
+            
+        }
+
+        $a = implode(',',$t);
+        echo json_encode(['status' => true]);
+        //redirect('https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk+');
     }
 }

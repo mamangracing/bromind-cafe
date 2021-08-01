@@ -104,7 +104,7 @@
                             }
 
                             //untuk menampilkan href di tombol order
-                            //document.getElementById('order').href ="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk " + order_list + "total bayar Rp " +sum;
+                            document.getElementById('order').href ="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk " + order_list + "total bayar Rp " +sum;
 
                             //document.getElementById('order').href="landingPage/tes"+tes;
                         }
@@ -122,25 +122,29 @@
                         }
 
                         
-                        document.write('<hr class="mt-5 bg-dark"><div class="form-group col-xl-11 m-auto"><div class="row"><div class="col-xl-8 subtotal"><label>Subtotal</label></div><div class="col-xl-4 row">Rp<h6 id="total_price" class="total_pprice w-50 mt-1 ml-1"></h6></div></div></div></div><div class="form-group col-xl-12 btn-orer"><div class="col-xl-8 m-auto"><button class="btn btn-danger form-control" id="order" target="blank">order</button></div></div></div>');
+                        document.write('<hr class="mt-5 bg-dark"><div class="form-group col-xl-11 m-auto"><div class="row"><div class="col-xl-8 subtotal"><label>Subtotal</label></div><div class="col-xl-4 row">Rp<h6 id="total_price" class="total_pprice w-50 mt-1 ml-1"></h6></div></div></div></div><div class="form-group col-xl-12 btn-orer"><div class="col-xl-8 m-auto"><a href="" class="btn btn-danger form-control" id="order" target="blank">order</a></div></div></div>');
 
                         total_bayar();
 					}
-                    $('#order').on('click',function(){
-                        $.ajax({
-                            type:'post',
-                            url: '<?= base_url('landingPage/tes');?>',
-                            data:{
-                                product_id : cart_product_id,
-                                qty : cart_qty,
-                                total : document.getElementById('total_price').innerHTML
-                            },
-                            success: function(data){
+                    // $('#order').on('click',function(){
+                    //     $.ajax({
+                    //         type:'post',
+                    //         url: '<?= base_url('landingPage/tes');?>',
+                    //         data:{
+                    //             product_id : cart_product_id,
+                    //             qty : cart_qty,
+                    //             harga : 7
+                    //         },
+                    //         success: function(data){
+                    //             console.log(data.status)
+
+                    //             if(data.status){
+                    //                 window.open("https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk " + order_list + "total bayar Rp " +sum);
+                    //             }
                                 
-                                
-                            }
-                        });
-                    });
+                    //         }
+                    //     });
+                    // });
 
 				</script>
 			</div>

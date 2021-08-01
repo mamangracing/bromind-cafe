@@ -142,6 +142,6 @@ class LandingPage extends CI_Controller
 
     public function tes()
     {
-        echo "asd";
+        var_dump($this->input->get());
     }
 }

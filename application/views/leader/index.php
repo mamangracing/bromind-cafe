@@ -128,7 +128,7 @@
                         </div>
                     </div>
 
-                    <h6 class="text-dark mb-4 font-weight-bold">Statistik 10 hari terakhir</h6>
+                    <h6 class="text-dark mb-4 font-weight-bold">Statistik pendapatan dan pengeluaran harian</h6>
                     <!-- Content Row -->
                     <div class="row">
 
@@ -136,7 +136,7 @@
                         <div class="col-sm-12 col-lg-6">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-italic text-dark text-center">Profit</h6>
+                                    <h6 class="m-0 font-italic text-dark text-center">Pendapatan bersih</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area">

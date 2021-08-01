@@ -27,9 +27,12 @@
 
                         var data_cart = JSON.parse(localStorage.getItem('items'));
                         var produk_cart = document.getElementsByClassName('produk_cart');
+                        var tes = '';
                                 
                         for(let i = 0; i<data_cart.length; i++){
                             document.write('<div class="form-group col-xl-12 mt-5 produk_cart"><div class="row"><div class="col-12 col-xl-6"><div class="col-xl-12 col-8 margin-auto cart-image"><img src='+data_cart[i].image+' class="w=100"></div></div><div class="col-xl-5 col-11" id="produk_name"><div class="produk_title mt-3">'+data_cart[i].product_name+'</div><div class="idr" id="price'+i+'">Rp <span class="amount">'+data_cart[i].price+'</span></div><div class="count mt-4">Qty<span class="input-group-btn"><button onclick="button_down('+i+');" type="button" class="btn btn-sm btn-danger rounded-0 btn-number less_qty" position="1" id="'+i+'"><i class="fas fa-minus"></i></button></span><input min="0" type="number" id="qty" value='+data_cart[i].qty+' class="qty col-xl-5 margin-left"><span class="input-group-btn"><button type="button" id="'+i+'" class="btn btn-sm btn-danger rounded-0 btn-number add_qty" position="1" onclick="button_up('+i+');"><i class="fas fa-plus"></i></button></span></div></div><div class="col-xl-1 col-1 h-25 remove"><a href="#" class="text-dark" onclick="hapus('+data_cart[i].id+');"><i class="far fa-trash-alt"></i></a></div></div></div>');
+
+                            tes += [ "/"+data_cart[i].product_id ];
                         }
 
                         function button_up(data){
@@ -98,7 +101,10 @@
                                 document.getElementById('total_price').innerText = sum;
                             }
 
-                            document.getElementById('order').href ="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk " + order_list + "total bayar Rp " +sum;
+                            //untuk menampilkan href di tombol order
+                            // document.getElementById('order').href ="https://api.whatsapp.com/send?phone=+6287744379926&text=saya ingin memesan produk " + order_list + "total bayar Rp " +sum;
+
+                            document.getElementById('order').href="landingPage/tes"+tes;
                         }
 
                         function hapus(data){

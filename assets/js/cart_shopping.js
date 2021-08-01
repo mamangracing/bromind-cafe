@@ -12,7 +12,7 @@ for(let i = 0; i<attToCartBtn.length; i++){
 			//menyimpan data berbentuk object
 			
 			let item = {
-				no_cart:0,
+				
 				product_id:attToCartBtn[i].parentElement.parentElement.children[0].children[0].children[1].children[0].children[2].value,
 				image:attToCartBtn[i].parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[0].src,
 				price:parseInt(attToCartBtn[i].parentElement.parentElement.parentElement.children[1].innerText),
